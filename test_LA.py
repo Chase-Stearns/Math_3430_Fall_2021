@@ -1,9 +1,9 @@
 '''
-Tests the functions in LA.py for HW #03
+Tests the functions in LA.py for HW #03 and #04
 '''
 
-import pytest
 import LA
+import pytest
 
 #Test inputs for HW #03
 
@@ -86,3 +86,74 @@ def test_mat_mult():
     assert LA.mat_mult(test_matrix_51,test_matrix_52) == result_51
     result_52 = [[67, 78], [91, 106], [115, 134]]
     assert LA.mat_mult(test_matrix_51,test_matrix_53) == result_52
+
+#Homework 04
+
+def test_complex_conjugate():
+    #Test for zero.
+    assert LA.complex_conjugate(0) == 0j
+    #Test for positive integer.
+    assert LA.complex_conjugate(2) == (2+0j)
+    #Test for negative integer.
+    assert LA.complex_conjugate(-3) == (-3+0j)
+    #Test for positive float.
+    assert LA.complex_conjugate(2.7) == (2.7-0j)
+    #Test for negative float.
+    assert LA.complex_conjugate(-4.6) == (-4.6-0j)
+    #Test for complex integer.
+    assert LA.complex_conjugate(complex(2,-3)) == (2+3j)
+    #Test for complex float.
+    assert LA.complex_conjugate(complex(-3.1,2.4)) == (-3.1-2.4j)
+
+def test_absolute_value():
+    #Test for zero.
+    assert LA.absolute_value(0) == 0.0
+    #Test for positive integer.
+    assert LA.absolute_value(2) == 2.0
+    #Test for negative integer.
+    assert LA.absolute_value(-3) == 3.0
+    #Test for positive float.
+    assert LA.absolute_value(2.7) == 2.7
+    #Test for negative float.
+    assert LA.absolute_value(-4.6) == 4.6
+    #Test for complex integer.
+    assert LA.absolute_value(complex(4,-3)) == 5.0
+
+def test_finite_p_norm():
+    #Test for vector with real numbers.
+    assert LA.finite_p_norm([3, 4]) == 5.0
+    #Test for vector with complex numbers.
+    assert LA.finite_p_norm([5, complex(3, 4)], p=1) == 10.0
+    
+def test_infinite_p_norm():
+    #Test for vector with real numbers.
+    assert LA.infinite_p_norm([3, 4]) == 4.0
+    # Test for vector with complex numbers.
+    assert LA.infinite_p_norm([3, complex(3, 4)]) == 5.0
+
+def test_p_norm():
+    #Test for vector with real numbers.
+    assert LA.p_norm([3, 4]) == 5.0
+    #Test for vector with complex numbers.
+    assert LA.p_norm([5, complex(3,4)], p=1) == 10.0
+    #Test for vector with real numbers.
+    assert LA.p_norm([3, 4],infinity = True) == 4.0
+    #Test for vector with complex numbers.
+    assert LA.p_norm([3, complex(3,4)],infinity = True) == 5.0
+
+vector_1 = [1, 2, 3]
+vector_2 = [4, -5, 6]
+vector_3 = [7, -8, 9]
+complex_vector = [complex(1,2), complex(3,4), complex(5,-6)]
+
+def test_inner_product():
+    #Test for vectors with real numbers.
+    assert LA.inner_product(vector_1,vector_2) == (12+0j)
+    #Test for vectors with real and complex numbers.
+    assert LA.inner_product(vector_3,complex_vector) == (28-72j)
+    #Test for vectors with real and complex numbers.
+    assert LA.inner_product(complex_vector,vector_3) == (28-72j)
+
+
+if __name__ == '__main__':
+    pytest.main(['test_LA.py'])
