@@ -3,8 +3,7 @@
 
 # Begin Example
 # Problem #0
-def add_vectors(vector_a: list,
-                vector_b: list) -> list:
+def add_vectors(vector_a: list,vector_b: list) -> list:
     """Adds the two input vectors.
 
     Creates a result vector stored as a list of 0's the same length as the input 
@@ -127,8 +126,8 @@ def mat_mult(matrix_A: list,matrix_B: list) -> list:
     and returned.
     
     Arguments:
-        matrix_A:
-        matrix_B:
+        matrix_A: A matrix stored as a list of lists.
+        matrix_B: A matrix stored as a list of lists.
         
     Returns:
         The product of the input matrix_A and the input matrix_B, stored as a 
@@ -137,4 +136,109 @@ def mat_mult(matrix_A: list,matrix_B: list) -> list:
     result: list = []
     for column in matrix_B:
         result.append(mat_vec_mult(matrix_B,column))
+    return result
+
+#Homework 04
+def complex_conjugate(scalar: complex) -> float:
+    '''Conjugates the input complex number.
+    
+    Multiply the imaginary number by -1 to flip the sign(+ or -) and return the
+    result as a complex number.
+    
+    Arguments:
+        scalar: The scalar coefficient of the complex number.
+        
+    Returns:
+        The complex conjuagte of the input complex number.
+    '''
+    result: complex = complex(scalar.real, -1 * scalar.imag)
+    return result
+
+def absolute_value(scalar: complex) -> float:
+    '''Produces the absolute value of the input scalar/complex number.
+    
+    Multiply the scalar/comlplex number by its complex conjuagte, using 
+    complex_conjugate to produce the complex conjugate. The square root of the
+    product will be taken and returned to result as a float. 
+    
+    Arguments:
+        scalar: A scalar/complex number.
+            
+    Returns:
+        The absolute value of the input scalar/complex number.
+    '''
+    result: float = (scalar * complex_conjugate(scalar)) ** 0.5
+    # Returned result.real because result.imag will be 0.0 and returning result
+    # will return the result from complex_conjuagte.
+    return result.real
+
+def finite_p_norm(vector: list,p: float = 2) -> float:
+    '''Produces the p-norm of the input vector. It is set for 2-norm. The 
+    elements of the vector are raised to the power of p and are added to p_sum.
+    The sum or p_sum is then taken to the pth root and returned.
+
+    Arguments:
+        vector: A vector stored as a list containing real/complex numbers.
+        p: A real number set as a float that must be greater than or equal to 1.
+
+    Returns:
+        The p-norm of the input vector.
+    '''
+    p_sum: float = 0
+    for element in vector:
+        p_sum += (absolute_value(element) ** p)
+    result = p_sum ** (1 / p)
+    return result
+
+def infinite_p_norm(vector: list) -> float:
+    '''Produces the infinite p-norm of the input vector. For the elements of
+    the vector the absolute values are found and then finds the largest value
+    and returned.
+
+    Arguments:
+        vector: A vector stored as a list containing real/complex numbers.
+
+    Returns:
+        The infinite p_norm of the input vector.
+    '''
+    result: float = None
+    for element in vector:
+        absolute_value_vector = [absolute_value(element)]
+    result = max(absolute_value_vector)
+    return result
+
+def p_norm(vector: list,p: float = 2,infinity: bool = False) -> float:
+    '''Produces the p-norm of the input vector or infinity norm. When it is
+    infinity then the infinite p-norm will be found using infinite_p_norm.
+    If it is not infinity then the p-norm will be found using finite_p_norm.
+    Finally the corresponding result will be returned.
+
+    Arguments:
+        vector: A vector stored as a list containing real/complex numbers.
+
+    Returns:
+        The p-norm of the input vector or infinity p-norm depending on if 
+        infinity is True.
+    '''
+    result: float = None
+    if infinity:
+        result = infinite_p_norm(vector)
+    else:
+        result = finite_p_norm(vector,p)
+    return result
+
+def inner_product(vector_A: list,vector_B: list) -> float:
+    '''Finds the inner product of the input vectors. The corresponding elements
+    of the vectors are multiplied together. The products are then summed
+    together and returned.
+
+    Arguments:
+        vector: A vector stored as a list containing real/complex numbers.
+
+    Returns:
+        The inner product of the input vectors.
+    '''
+    result: float = 0
+    for element in range(len(vector_A)):
+        result += (complex(vector_A[element]) * complex(vector_B[element]))
     return result
