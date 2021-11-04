@@ -1,8 +1,4 @@
-#Homework #03
 
-
-# Begin Example
-# Problem #0
 def add_vectors(vector_a: list,vector_b: list) -> list:
     """Adds the two input vectors.
 
@@ -227,7 +223,7 @@ def p_norm(vector: list,p: float = 2,infinity: bool = False) -> float:
         result = finite_p_norm(vector,p)
     return result
 
-def inner_product(vector_A: list,vector_B: list) -> float:
+def inner_product(vector_A: list,vector_B: list) -> complex:
     '''Finds the inner product of the input vectors. The corresponding elements
     of the vectors are multiplied together. The products are then summed
     together and returned.
@@ -238,7 +234,7 @@ def inner_product(vector_A: list,vector_B: list) -> float:
     Returns:
         The inner product of the input vectors.
     '''
-    result: float = 0
+    result: complex = 0
     for element in range(len(vector_A)):
-        result += (complex(vector_A[element]) * complex(vector_B[element]))
+        result += vector_A[element] * vector_B[element]
     return result
