@@ -99,3 +99,15 @@ def stable_gram_schmidt(matrix: list) -> list:
 
     return [Q,R]
 
+def orthonormal(matrix: list) -> list:
+    """Finds the orthonormal list of vectors(or lists) of the input matrix. 
+    Uses stable_gram_schmidt and returns Q of the QR factorization and stored
+    as a list of vectors(or lists) in result. The result is then returned.
+    Arguments:
+        matrix: A matrix stored as a list of vectors(or lists).
+    Returns:
+        An orthonormal matrix with the same span as the input matrix
+    """
+    result: list = stable_gram_schmidt(matrix)[0]
+    return result
+    
