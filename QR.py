@@ -39,37 +39,6 @@ def orthagonalize(vector: list, basis: list) -> list:
 
     return [result,product]
 
-
-def unstable_gram_schmidt(matrix: list) -> list:
-    '''Uses the original Gram-Schmidt formula to find the reduced QR 
-    factorization of the input matrix. Create the matrices Q and R and set them
-    to be equal to 0 matrix. To start calculating matrices Q and R, iterate 
-    over every column vector of the input matrix. Storing a copy of the vector, 
-    then the vector is set orthagonal to all initialized columns of matrix Q, 
-    and storing each element in  matrix R. Normalize this column vector, then 
-    repeat for this opreation for all the columns in the input matrix. 
-    Returning the matrices Q and R.
-    Arguments:
-        matrix: A matrix stored as a list of lists.
-    Returns:
-        The orthonormal matrix, Q of the input matrix and the upper triangular 
-        matrix, R fo the input matrix.
-    '''
-    Q = [[0 for _ in column] for column in matrix]
-    R = [[0 for m in matrix] for n in matrix]
-
-    for index, _ in enumerate(matrix):
-        vector = matrix[index][:]
-        for element in range(0, index):
-            orthagonal_operation = orthagonalize(vector, matrix[element])
-            vector = orthagonal_operation[0]
-            R[index][element] = orthagonal_operation[1]
-        normalize_operation = normalize(vector)
-        Q[index] = normalize_operation[0]
-        R[index][index] = normalize_operation[1]
-
-    return [Q,R]
-
 def stable_gram_schmidt(matrix: list) -> list:
     '''Uses the Modified Gram-Schmidt formula to find the reduced QR 
     factorization of the input matrix.
@@ -110,4 +79,3 @@ def orthonormal(matrix: list) -> list:
     """
     result: list = stable_gram_schmidt(matrix)[0]
     return result
-    
