@@ -1,0 +1,26 @@
+"""
+For this homework and homework 10 you will not need to write any code. Instead
+you will upload a small text file containing your answer. For this homework that
+file should be named HW09. You will upload it to your github repo.
+
+Question 01) Recently we discussed floating point arithmetic, which has become
+the standard way of representing numbers on a computer. One of the key aspects
+of floating point numbers is that the gap between a number and it's floating
+point representation increases with the magnitude of the number. 
+This differs from what is called a "fixed
+point" representation, where the gap is constant. 
+
+What is an advantage or disadvantage to using floating point instead of fixed
+point?
+
+Note: Your answer is only expected to be a short paragraph. You are not expected to
+prove anything! 
+"""
+
+#Homework 09
+"""
+The biggest advantage I see with using floating point instead of fixed point is
+the accuracy. While on the other hand, the disadvantage of using a floating 
+point number is the amount of storage required to store the number. 
+
+"""
